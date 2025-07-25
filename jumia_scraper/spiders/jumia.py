@@ -7,7 +7,7 @@ class JumiaSpider(scrapy.Spider):
     start_urls = ["https://www.jumia.co.ke/smartphones/"]
 
     page_count = 1
-    max_pages = 3  # Change as needed
+    max_pages = 3
     custom_settings = {
         'CONCURRENT_REQUESTS': 2,
         'DOWNLOAD_DELAY': 1,
@@ -67,7 +67,7 @@ class JumiaSpider(scrapy.Spider):
         # Get data passed from the listing page
         item = response.meta
 
-        # Extract brand from the breadcrumbs (most reliable)
+        # Extract brand from the breadcrumbs
         brand = response.css('a[aria-label*="brand"]::text').get()
         if not brand:
             # Fallback to first word of title if breadcrumb not found
